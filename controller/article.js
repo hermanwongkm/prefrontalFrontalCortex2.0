@@ -9,7 +9,16 @@ const getAllArticles = async (req, res) => {
   }
 };
 
-const getAllContent = async (req, res) => {};
+const getAllContent = async (req, res) => {
+  try {
+    const content = await models.Content.findAll({});
+    return res.status(200).json({ ...content });
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
 module.exports = {
-  getAllArticles
+  getAllArticles,
+  getAllContent
 };

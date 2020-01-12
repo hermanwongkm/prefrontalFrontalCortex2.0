@@ -3,5 +3,6 @@ var router = express.Router(); //Router is simply a way for you to reorganize yo
 //app.router allows you to define your routes separately and simply use it in your app. It provides a nice separation of concerns.
 const controllers = require("../controller/article");
 router.get("/", controllers.getAllArticles);
+router.get("/content", controllers.getAllContent);
 
 module.exports = router;

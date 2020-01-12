@@ -62,10 +62,10 @@ x = async () => {
 //   process.exit();
 // });
 
-// models.Article.findAll({ include: [{ model: models.Content }] }).then(users => {
-//   users.forEach(user => console.log(user.dataValues));
-//   process.exit();
-// });
+models.Article.findAll({ include: [{ model: models.Content }] }).then(users => {
+  users.forEach(user => console.log(user.dataValues));
+  process.exit();
+});
 
 // models.Content.findAll({}).then(users => {
 //   users.forEach(user => console.log(user.dataValues));
