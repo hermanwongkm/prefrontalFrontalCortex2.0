@@ -19,7 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Article.associate = function(models) {
-    Article.hasOne(models.Content, { foreignKey: "articleId" });
+    Article.hasOne(models.Content, {
+      foreignKey: "articleId"
+    });
   };
   return Article;
 };

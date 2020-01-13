@@ -4,5 +4,8 @@ var router = express.Router(); //Router is simply a way for you to reorganize yo
 const controllers = require("../controller/article");
 router.get("/", controllers.getAllArticles);
 router.get("/content", controllers.getAllContent);
+router.post("/createArticle", controllers.createPost);
+router.post("/updateArticle", controllers.updatePost);
+router.delete("/:id", controllers.deletePost);
 
 module.exports = router;
