@@ -5,5 +5,6 @@ const controllers = require("../controller/article");
 router.get("/", controllers.getAllArticles);
 router.get("/content", controllers.getAllContent);
 router.post("/createArticle", controllers.createPost);
+router.post("/updateArticle", controllers.updatePost);
 
 module.exports = router;

@@ -31,15 +31,35 @@ const createPost = async (req, res) => {
     body: post,
     articleId: article.id
   })
-    .then(content => content.dataValues) //this returns the id to articleId
+    .then(content => content.dataValues)
     .catch(err => console.log(err));
   returnedResults.postDetails = content;
   console.log(returnedResults);
   return res.status(200).json(returnedResults);
 };
 
+const updatePost = async (req, res) => {
+  try {
+    let { article, postId } = req.body;
+    console.log(postId);
+
+    let content = await models.Content.findOne({
+      where: {
+        id: postId
+      }
+    });
+    content2 = await content.update({
+      body: article
+    });
+    return res.status(200).json(content);
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
 module.exports = {
   getAllArticles,
   getAllContent,
-  createPost
+  createPost,
+  updatePost
 };
