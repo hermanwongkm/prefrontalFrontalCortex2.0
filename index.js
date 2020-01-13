@@ -45,9 +45,9 @@ const Op = models.Sequelize.Op;
 // });
 x = async () => {
   let articleId = await models.Article.create({
-    title: "title"
+    title: "title2"
   })
-    .then(cat => cat.dataValues)
+    .then(cat => cat.dataValues.id)
     .catch(err => console.log(err));
   console.log(articleId);
   await models.Content.create({
@@ -62,10 +62,10 @@ x = async () => {
 //   process.exit();
 // });
 
-models.Article.findAll({ include: [{ model: models.Content }] }).then(users => {
-  users.forEach(user => console.log(user.dataValues));
-  process.exit();
-});
+// models.Article.findAll({ include: [{ model: models.Content }] }).then(users => {
+//   users.forEach(user => console.log(user.dataValues));
+//   process.exit();
+// });
 
 // models.Content.findAll({}).then(users => {
 //   users.forEach(user => console.log(user.dataValues));
