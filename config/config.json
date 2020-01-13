@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "Herman",
-    "password": "",
+    "username": "hermanwongkm",
+    "password": "Sambetty1aws",
     "database": "postgres",
-    "host": "127.0.0.1",
+    "host": "occipitallobe.cb6xcgetalmt.ap-southeast-1.rds.amazonaws.com",
     "dialect": "postgres",
     "operatorsAliases": false
   },
