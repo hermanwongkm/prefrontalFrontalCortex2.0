@@ -6,5 +6,6 @@ router.get("/", controllers.getAllArticles);
 router.get("/content", controllers.getAllContent);
 router.post("/createArticle", controllers.createPost);
 router.post("/updateArticle", controllers.updatePost);
+router.delete("/:id", controllers.deletePost);
 
 module.exports = router;

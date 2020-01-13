@@ -15,7 +15,8 @@ module.exports = {
       articleId: {
         type: Sequelize.UUID,
         allowNull: false,
-        references: { model: "Articles", key: "id" } //This is used to set up a foreign key relationship
+        references: { model: "Articles", key: "id" }, //This is used to set up a foreign key relationship
+        onDelete: "CASCADE"
       },
       createdAt: {
         allowNull: false,
