@@ -5,7 +5,11 @@ const app = express(); //This creates an object called app with methods like get
 
 var articleRouter = require("./routes/article");
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://hermanwongkm.com" // restrict calls to those this address
+  })
+);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
