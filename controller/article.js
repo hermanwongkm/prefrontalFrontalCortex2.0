@@ -20,9 +20,10 @@ const getAllContent = async (req, res) => {
 
 const createPost = async (req, res) => {
   let returnedResults = {};
-  const { postTitle, post } = req.body;
+  const { postTitle, post, date } = req.body;
   let article = await models.Article.create({
-    title: postTitle
+    title: postTitle,
+    date: date
   })
     .then(article => article.dataValues) //this returns the id to articleId
     .catch(err => console.log(err));
