@@ -1,7 +1,7 @@
 
 ## Hello there
 
-This Node server is built using Expressjs and connects to postgres via sequelize which is a ORM for Nodejs.
+This `Nodejs` server is built using `Expressjs` and connects to `postgres` via `sequelize` which is a ORM for Nodejs.
 
 This is a revamp version of my preliminary node server where i used pure SQL queries. It can be found [here](https://github.com/hermanwongkm/PreFrontalCortex).
 
