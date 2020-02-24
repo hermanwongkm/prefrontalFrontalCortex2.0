@@ -101,10 +101,6 @@ const deletePost = async (req, res) => {
 
 const updatePostCatergory = async (req, res) => {
   try {
-    console.log("-------");
-    console.log(req.body.postId);
-    console.log(req.body.catergoryId[0]);
-    console.log("-------");
     let { catergoryId, postId } = req.body;
     let [
       articleCatergory,
@@ -115,12 +111,7 @@ const updatePostCatergory = async (req, res) => {
       },
       defaults: { categoryId: catergoryId[0] }
     });
-    console.log("********");
-    console.log(articleCatergory);
-    console.log("-------");
-    console.log(created);
     if (!created) {
-      console.log("came here");
       articleCatergory = await articleCatergory.update({
         categoryId: catergoryId[0]
       });
