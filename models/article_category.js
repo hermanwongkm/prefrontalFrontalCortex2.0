@@ -1,7 +1,7 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const Content = sequelize.define(
-    "Content",
+  const article_Category = sequelize.define(
+    "article_Category",
     {
       id: {
         type: DataTypes.UUID,
@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         defaultValue: DataTypes.UUIDV4
       },
-      body: {
-        type: DataTypes.TEXT,
+      categoryId: {
+        type: DataTypes.UUID,
         allowNull: false
       },
       articleId: {
@@ -20,9 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {}
   );
-  Content.associate = function(models) {
-    // Content.belongsTo(models.Article, { foreignKey: "articleId" });
-    // This is not required, only one of it is required for associated for one to one.
+  article_Category.associate = function(models) {
+    // associations can be defined here
   };
-  return Content;
+  return article_Category;
 };

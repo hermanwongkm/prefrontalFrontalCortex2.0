@@ -2,9 +2,32 @@ const models = require("../models/index");
 
 const getAllArticles = async (req, res) => {
   try {
-    const posts = await models.Article.findAll({});
+    const posts = await models.Article.findAll({
+      include: [
+        {
+          model: models.Catergory,
+          through: { model: models.article_Category }
+        }
+      ]
+    });
     return res.status(200).json(posts);
   } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
+const getArticle = async (req, res) => {
+  try {
+    const posts = await models.Article.findOne({
+      where: {
+        id: "86580c0d-7583-444d-a9f3-4ce9f58ba724"
+      },
+      include: models.Content
+    });
+    console.log(posts.dataValues);
+    return res.status(200).json(posts);
+  } catch (error) {
+    console.log(error);
     return res.status(500).send(error.message);
   }
 };
@@ -20,7 +43,7 @@ const getAllContent = async (req, res) => {
 
 const createPost = async (req, res) => {
   let returnedResults = {};
-  const { postTitle, post, date } = req.body;
+  const { postTitle, post, date, catergoryIds } = req.body;
   let article = await models.Article.create({
     title: postTitle,
     date: date
@@ -35,6 +58,13 @@ const createPost = async (req, res) => {
     .then(content => content.dataValues)
     .catch(err => console.log(err));
   returnedResults.postDetails = content;
+
+  for (catergoryId of catergoryIds) {
+    let articleCatergory = await models.article_Category.create({
+      categoryId: catergoryId,
+      articleId: article.id
+    });
+  }
   return res.status(200).json(returnedResults);
 };
 
@@ -69,10 +99,43 @@ const deletePost = async (req, res) => {
   }
 };
 
+const updatePostCatergory = async (req, res) => {
+  try {
+    console.log("-------");
+    console.log(req.body.postId);
+    console.log(req.body.catergoryId[0]);
+    console.log("-------");
+    let { catergoryId, postId } = req.body;
+    let [
+      articleCatergory,
+      created
+    ] = await models.article_Category.findOrCreate({
+      where: {
+        articleId: postId
+      },
+      defaults: { categoryId: catergoryId[0] }
+    });
+    console.log("********");
+    console.log(articleCatergory);
+    console.log("-------");
+    console.log(created);
+    if (!created) {
+      console.log("came here");
+      articleCatergory = await articleCatergory.update({
+        categoryId: catergoryId[0]
+      });
+    }
+    return res.status(200).json(articleCatergory);
+  } catch (error) {
+    return res.status(500).send(error.message);
+  }
+};
+
 module.exports = {
   getAllArticles,
   getAllContent,
   createPost,
   updatePost,
-  deletePost
+  deletePost,
+  updatePostCatergory
 };

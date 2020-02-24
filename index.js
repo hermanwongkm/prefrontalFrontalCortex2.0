@@ -4,6 +4,7 @@ const express = require("express"); //This returns a function, so express is a f
 const app = express(); //This creates an object called app with methods like get.
 const admin = require("firebase-admin");
 var articleRouter = require("./routes/article");
+var catergoryRouter = require("./routes/catergory");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -36,10 +37,11 @@ function checkAuth(req, res, next) {
     res.status(403).send("Unauthorized");
   }
 }
-
 app.use("/articles/private", checkAuth);
 
 app.use("/articles", articleRouter);
+
+app.use("/category", catergoryRouter);
 
 // Start server
 app.listen(process.env.PORT || 3001, () => {

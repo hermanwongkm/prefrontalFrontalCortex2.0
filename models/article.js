@@ -22,6 +22,12 @@ module.exports = (sequelize, DataTypes) => {
     Article.hasOne(models.Content, {
       foreignKey: "articleId"
     });
+
+    Article.belongsToMany(models.Catergory, {
+      through: "article_Catergory",
+      foreignKey: "articleId"
+      // otherKey: articleId
+    });
   };
   return Article;
 };
